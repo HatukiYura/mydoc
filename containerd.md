@@ -107,10 +107,15 @@ $ tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.5.1.tgz
 
 
 [root@master ~]# cd /etc
+
 [root@master etc]# mkdir containerd
+
 [root@master etc]# cd containerd/
+
 [root@master containerd]# ls
+
 [root@master containerd]# touch config.toml
+
 [root@master containerd]# containerd config default > /etc/containerd/config.toml
 
 **vi config.toml**
