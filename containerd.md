@@ -36,7 +36,7 @@ bin/containerd-stress
 
 
 
-into `/usr/local/lib/systemd/system/containerd.service`
+into `/usr/lib/systemd/system/containerd.service`
 
 touch containerd.service
 
