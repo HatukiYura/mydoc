@@ -109,6 +109,26 @@ sudo kubeadm init --pod-network-cidr=192.168.0.0/16
 
 初始化完成后，命令输出中会有一个 `kubeadm join` 命令，包含 token 和哈希值。请保存该命令，后续将用于在 worker 节点加入集群。
 
+镜像加速，修改配置文件 /etc/containerd/config.toml，添加如下的配置：
+```
+    [plugins."io.containerd.grpc.v1.cri".registry]
+    。。。。。。(原本有的)
+      [plugins."io.containerd.grpc.v1.cri".registry.mirrors]
+        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
+          endpoint = ["https://xxxx.xx.com"]
+        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."k8s.gcr.io"]
+          endpoint = ["https://xxxx.xx.com"]
+        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."registry.k8s.io"]
+          endpoint = ["https://xxxx.xx.com"]
+        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."gcr.io"]
+          endpoint = ["https://xxxx.xx.com"]
+        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."ghcr.io"]
+          endpoint = ["https://xxxx.xx.com"]
+        [plugins."io.containerd.grpc.v1.cri".registry.mirrors."quay.io"]
+          endpoint = ["https://xxxx.xx.com"]
+```
+
+
 #### 2.1 配置 kubectl 命令行工具
 
 在 **master 节点** 上执行：
